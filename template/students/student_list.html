@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student List</title>
+</head>
+<body>
+
+    <h1>Student Management System</h1>
+
+    <h2>Student List</h2>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>City</th>
+            <th>Course</th>
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <td>{{ student.name }}</td>
+            <td>{{ student.city }}</td>
+            <td>{{ student.course }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+</body>
+</html>

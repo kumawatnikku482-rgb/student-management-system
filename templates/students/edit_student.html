@@ -1,0 +1,26 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student</title>
+</head>
+<body>
+
+    <h1>Student Management System</h1>
+
+    <h2>Edit Student</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">Update Student</button>
+    </form>
+
+    <br>
+
+    <a href="/students/list/">Back to Student List</a>
+
+</body>
+</html>

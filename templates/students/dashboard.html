@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f5ff;
+            color: #252b48;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #4338ca, #7c3aed);
+            color: white;
+            padding: 35px 20px;
+        }
+
+        .header-content {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .header h1 {
+            margin: 0 0 10px;
+            font-size: 30px;
+        }
+
+        .header p {
+            margin: 0;
+            color: #e9e7ff;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            margin-bottom: 22px;
+            font-size: 22px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(49, 46, 129, 0.08);
+            border: 1px solid #ecebff;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 30px rgba(49, 46, 129, 0.14);
+        }
+
+        .card-label {
+            color: #777b96;
+            font-size: 15px;
+            margin: 0 0 16px;
+        }
+
+        .number {
+            font-size: 42px;
+            font-weight: bold;
+            margin: 0 0 12px;
+            color: #4338ca;
+        }
+
+        .card:nth-child(2) .number {
+            color: #059669;
+        }
+
+        .card:nth-child(3) .number {
+            color: #d97706;
+        }
+
+        .description {
+            color: #8589a0;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 30px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 13px 20px;
+            background: #4338ca;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background: #312e81;
+        }
+
+        .add-btn {
+            background: #059669;
+        }
+
+        .add-btn:hover {
+            background: #047857;
+        }
+
+        .logout-btn {
+            padding: 13px 20px;
+            background: white;
+            color: #4338ca;
+            border: 1px solid #d8d6ff;
+            border-radius: 9px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .logout-btn:hover {
+            background: #eeedff;
+        }
+
+        .footer {
+            text-align: center;
+            color: #8589a0;
+            font-size: 13px;
+            padding: 25px 15px;
+        }
+
+        @media (max-width: 700px) {
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 25px;
+            }
+
+            .container {
+                margin-top: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="header-content">
+            <h1>Student Management Dashboard</h1>
+            <p>Welcome! Manage your student records in one place.</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <h2 class="section-title">Dashboard Overview</h2>
+
+        <div class="cards">
+
+            <div class="card">
+                <p class="card-label">Total Students</p>
+                <p class="number">{{ total_students }}</p>
+                <p class="description">All student records</p>
+            </div>
+
+            <div class="card">
+                <p class="card-label">Total Courses</p>
+                <p class="number">{{ total_courses }}</p>
+                <p class="description">Different courses</p>
+            </div>
+
+            <div class="card">
+                <p class="card-label">Total Cities</p>
+                <p class="number">{{ total_cities }}</p>
+                <p class="description">Different cities</p>
+            </div>
+
+        </div>
+
+        <div class="actions">
+
+            <a href="{% url 'student_list' %}" class="btn">
+                View Student List
+            </a>
+
+            <a href="{% url 'add_student' %}" class="btn add-btn">
+                + Add New Student
+            </a>
+
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="logout-btn">
+                    Logout
+                </button>
+            </form>
+
+        </div>
+
+    </main>
+
+    <footer class="footer">
+        Student Management System | Built with Django
+    </footer>
+
+</body>
+</html>
